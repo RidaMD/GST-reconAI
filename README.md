@@ -1,65 +1,86 @@
-# GST ReconAI
+# GST ReconAI 🛡️
 
-A comprehensive Knowledge Graph-based GST Reconciliation and Fraud Detection platform. This system leverages Neo4j to map relationships between Taxpayers, GSTINs, Invoices, and Returns to identify mismatches, behavioral risks, and financial exposure.
+**GST ReconAI** is a Knowledge Graph-based GST Reconciliation and Fraud Detection platform designed for high-precision audit preparation and vendor risk assessment.
 
-## Features
+## 🏗️ Architecture OVERVIEW
 
-- **Knowledge Graph Visualization**: Interactive 2D graph of GST entities and their relationships.
-- **Financial Risk Scorer**: Tabular view of invoices with automated risk scoring and compliance flags.
-- **Predictive Vendor Risk**: Machine learning-based risk assessment for suppliers based on historical behavior.
-- **Compliance Flags**: Automated identification of errors such as:
-  - Match
-  - Excess ITC Claim
-  - GST Under-Claim
-  - Return Not Filed
-  - GST Mismatch
-- **AI-Powered Audit Support**: Integration for generating NLP-based audit reports.
-- **Flexible Data Ingestion**: Supports both multi-file and consolidated CSV mock data.
+The system is built on a modern, decoupled architecture designed for graph-relational data processing:
 
-## Project Structure
+-   **Frontend**: React (Vite) + `react-force-graph-2d` for interactive visualization.
+-   **Backend**: FastAPI (Python) for high-performance API handling.
+-   **Database**: Neo4j (Graph Database) for mapping complex multi-hop supply chain relationships.
+-   **Risk Engine**: A custom Python-based structural and behavioral audit engine.
 
-- `backend/`: FastAPI-powered backend with Neo4j integration and reconciliation logic.
-- `frontend/`: React-based dashboard with interactive graph and analytics components.
-- `mock data/`: Standard sample data for testing the reconciliation engine.
+---
 
-## Getting Started
+## ✨ Key Features
+
+-   **Knowledge Graph Visualization**: Interactive 2D graph mapping relationships between Taxpayers, GSTINs, Invoices, and Returns.
+-   **Financial Risk Scorer**: Ranked dashboard of invoices with automated risk scoring and color-coded compliance flags.
+-   **Behavioral Vendor Risk**: Risk assessment for suppliers based on historical transaction patterns and filing behavior (GSTR-1/3B consistency).
+-   **AI Audit Support**: Integration with **OpenAI (GPT-4o)** for generating natural-language audit narratives based on graph-extracted risk nodes.
+-   **Compliance Flags**:
+    -   `Match`: Perfect alignment across GSTR-1, 2B, and PR.
+    -   `Excess ITC Claim`: ITC claimed exceeds the supplier's filed GST.
+    -   `Return Not Filed`: Invoice exists but no corresponding GSTR-1 found.
+    -   `GST Mismatch`: Discrepancy between supplier-reported and buyer-claimed GST.
+
+---
+
+## 📊 Sample Insights
+
+### Risk Scoring Formula
+The system calculates a `total_risk` score based on Structural (SP) and Behavioral (BP) points, scaled by a Financial Exposure multiplier:
+
+```python
+# Multiplier based on relative invoice amount
+total_risk = (structural_points + behavioral_points) * multiplier
+
+if perc_of_max < 0.20: multiplier = 1.0
+elif perc_of_max <= 0.50: multiplier = 1.2
+elif perc_of_max <= 0.80: multiplier = 1.5
+else: multiplier = 1.8
+```
+
+### Sample API Output (Scorer)
+```json
+{
+  "invoice_id": "INV005",
+  "supplier_name": "Supplier_GST1005",
+  "gst_invoice": 16200.0,
+  "gst_paid": 18000.0,
+  "risk_score": 300,
+  "risk_level": "CRITICAL",
+  "root_cause": "Return Not Filed | Excess ITC Claim | GST Mismatch | Missing 2B"
+}
+```
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
+- Python 3.9+ 
+- Node.js + npm
+- Neo4j Instance (Local or Aura)
 
-- Python 3.9+
-- Node.js & npm
-- Neo4j Database
+### 1. Backend Setup
+```bash
+cd backend
+pip install -r requirements.txt
+python csv_ingestion.py # Populates graph
+uvicorn main:app --reload
+```
 
-### Setup
+### 2. Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-1. **Environment Variables**:
-   Create a `.env` file in the `backend/` directory:
-   ```env
-   NEO4J_URI=bolt://localhost:7687
-   NEO4J_USER=neo4j
-   NEO4J_PASSWORD=your_password
-   OPENAI_API_KEY=your_key
-   ```
+## 🛠️ Performance & Stability
+In the event of a backend or database connectivity issue, the frontend is designed to gracefully degrade, showing persistent mock data placeholders to ensure presentation continuity.
 
-2. **Ingest Data**:
-   ```bash
-   cd backend
-   python csv_ingestion.py
-   ```
-
-3. **Run Backend**:
-   ```bash
-   cd backend
-   uvicorn main:app --reload
-   ```
-
-4. **Run Frontend**:
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
-
-## License
-
+## 📄 License
 MIT
