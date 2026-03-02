@@ -9,7 +9,7 @@ The system is built on a modern, decoupled architecture designed for graph-relat
 -   **Frontend**: React (Vite) + `react-force-graph-2d` for interactive visualization.
 -   **Backend**: FastAPI (Python) for high-performance API handling.
 -   **Database**: Neo4j (Graph Database) for mapping complex multi-hop supply chain relationships.
--   **Risk Engine**: A custom Python-based structural and behavioral audit engine.
+-   **Risk Engine**: A custom Python-based structural and behavioral audit engine. Multi-hop Cypher queries validate invoice → GSTIN → return filing chains to detect structural inconsistencies.
 
 ---
 
