@@ -48,7 +48,7 @@ def generate_audit_report(invoice_data: dict) -> str:
         return "Error: OPENAI_API_KEY is not set in the environment."
 
     try:
-        llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.2, openai_api_key=openai_api_key)
+        llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.1, openai_api_key=openai_api_key)
         
         prompt_template = """
         You are an elite GST (Goods and Services Tax) Compliance Auditor AI.

@@ -18,7 +18,7 @@ The system is built on a modern, decoupled architecture designed for graph-relat
 -   **Knowledge Graph Visualization**: Interactive 2D graph mapping relationships between Taxpayers, GSTINs, Invoices, and Returns.
 -   **Financial Risk Scorer**: Ranked dashboard of invoices with automated risk scoring and color-coded compliance flags.
 -   **Behavioral Vendor Risk**: Risk assessment for suppliers based on historical transaction patterns and filing behavior (GSTR-1/3B consistency).
--   **AI Audit Support**: Integration with **OpenAI (GPT-4o)** for generating natural-language audit narratives based on graph-extracted risk nodes.
+-   **AI Audit Support**: Integration with **OpenAI (GPT-4o-mini)** for generating natural-language audit narratives based on graph-extracted risk nodes.
 -   **Compliance Flags**:
     -   `Match`: Perfect alignment across GSTR-1, 2B, and PR.
     -   `Excess ITC Claim`: ITC claimed exceeds the supplier's filed GST.
