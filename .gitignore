@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# Brain/Artifacts
+.gemini/
+brain/
+*.webp
+*.png

@@ -1,0 +1,31 @@
+taxpayer_id,name,sector
+TAXP001,Company_1,Manufacturing
+TAXP002,Company_2,Manufacturing
+TAXP003,Company_3,Retail
+TAXP004,Company_4,IT Services
+TAXP005,Company_5,IT Services
+TAXP006,Company_6,IT Services
+TAXP007,Company_7,Manufacturing
+TAXP008,Company_8,Logistics
+TAXP009,Company_9,Manufacturing
+TAXP010,Company_10,Logistics
+TAXP011,Company_11,Pharma
+TAXP012,Company_12,Manufacturing
+TAXP013,Company_13,Manufacturing
+TAXP014,Company_14,Manufacturing
+TAXP015,Company_15,IT Services
+TAXP016,Company_16,IT Services
+TAXP017,Company_17,Logistics
+TAXP018,Company_18,Logistics
+TAXP019,Company_19,Manufacturing
+TAXP020,Company_20,Logistics
+TAXP021,Company_21,IT Services
+TAXP022,Company_22,Logistics
+TAXP023,Company_23,Pharma
+TAXP024,Company_24,IT Services
+TAXP025,Company_25,Pharma
+TAXP026,Company_26,Logistics
+TAXP027,Company_27,Retail
+TAXP028,Company_28,Manufacturing
+TAXP029,Company_29,IT Services
+TAXP030,Company_30,Pharma
